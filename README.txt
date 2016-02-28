@@ -13,6 +13,8 @@ This plugin will automatically add a button to the comment form to read back the
 
 It makes use of the Speech Synthesis API and is therefor _not_ going to work in all browsers. But that's okay, because this is really just for fun.
 
+Inspired by https://xkcd.com/481/.
+
 == Installation ==
 
 1. Upload the `read-back-comments` folder to the `/wp-content/plugins/` directory
