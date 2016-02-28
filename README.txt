@@ -13,7 +13,8 @@ This plugin will automatically add a button to the comment form to read back the
 
 It makes use of the Speech Synthesis API and is therefor _not_ going to work in all browsers. But that's okay, because this is really just for fun.
 
-Inspired by https://xkcd.com/481/.
+Inspired by [https://xkcd.com/481/](https://xkcd.com/481/).
+Support list: [http://caniuse.com/#search=speechSynthesis](http://caniuse.com/#search=speechSynthesis)
 
 == Installation ==
 
