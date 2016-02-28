@@ -1,0 +1,25 @@
+=== Read Back Comments ===
+Contributors: cheffheid
+Tags: comments
+Requires at least: 3.8
+Tested up to: 4.4
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin will automatically read back comments on submission
+
+== Description ==
+
+It makes use of the Speech Synthesis API and is therefor _not_ going to work in all browsers. But that's okay, because this is really just for fun.
+
+== Installation ==
+
+1. Upload the `read-back-comments` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Sit back and enjoy!
+
+== Changelog ==
+
+= 1.0 =
+* First release.
