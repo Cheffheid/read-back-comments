@@ -52,9 +52,7 @@ class Read_Back_Comments {
     }
 
     public function enqueue_read_back_script() {
-        global $post;
-
-        if ( comments_open( $post->ID ) ) {
+        if ( comments_open() ) {
             wp_enqueue_script( $this->plugin_name, 
                                 plugin_dir_url( __FILE__ ) . 'js/read-back-comments.js',
                                 array(),
