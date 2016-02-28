@@ -8,7 +8,7 @@
 *
 * @wordpress-plugin
 * Plugin Name:       Read Back Comments
-* Plugin URI:        http://jeffreydewit.com/post-series-manager/
+* Plugin URI:        http://jeffreydewit.com/read-back-comments/
 * Description:       A plugin that will read back your comment before posting it. See also: https://xkcd.com/481/
 * Version:           1.0.0
 * Author:            Jeffrey de Wit
