@@ -8,4 +8,5 @@ Support list: [http://caniuse.com/#search=speechSynthesis](http://caniuse.com/#s
 
 ## TODO
 * Add i18n.
-* Handle support for other comment plugins (JetPack? Disqus?)
+* Handle support for other comment plugins (JetPack?)
+* Settings screen for voice settings
