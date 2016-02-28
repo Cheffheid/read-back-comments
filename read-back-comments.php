@@ -52,12 +52,16 @@ class Read_Back_Comments {
     }
 
     public function enqueue_read_back_script() {
-        wp_enqueue_script( $this->plugin_name, 
-                            plugin_dir_url( __FILE__ ) . 'js/read-back-comments.js',
-                            array(),
-                            $this->version,
-                            true
-                         );
+        global $post;
+
+        if ( comments_open( $post->ID ) ) {
+            wp_enqueue_script( $this->plugin_name, 
+                                plugin_dir_url( __FILE__ ) . 'js/read-back-comments.js',
+                                array(),
+                                $this->plugin_version,
+                                true
+                             );
+        }
     }
 
 }
