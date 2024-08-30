@@ -22,7 +22,8 @@ function initializeReadBackComments(app) {
 
     app.createButton();
     app.addEventListeners();
-    app.addButtonToCommentForm();
+    app.createVoiceList();
+    app.addButtonToDOM();
   };
 
   app.createButton = () => {
@@ -31,6 +32,37 @@ function initializeReadBackComments(app) {
 
     app.els.readBackButton.innerHTML = readbacki18n.button_text;
     app.els.readBackButton.setAttribute("type", "button");
+  };
+
+  app.getVoiceList = () => {
+    return new Promise(function (resolve, reject) {
+      let synth = window.speechSynthesis;
+      let id;
+
+      id = setInterval(() => {
+        if (synth.getVoices().length !== 0) {
+          resolve(synth.getVoices());
+          clearInterval(id);
+        }
+      }, 10);
+    });
+  };
+
+  app.createVoiceList = () => {
+    app.getVoiceList().then((voices) => {
+      app.availableVoices = voices;
+      app.els.voiceSelect = document.createElement("select");
+      for (let i = 0; i < voices.length; i++) {
+        const option = document.createElement("option");
+        option.textContent = `${voices[i].name} (${voices[i].lang})`;
+        option.value = i;
+        app.els.voiceSelect.appendChild(option);
+      }
+      app.els.commentForm.insertBefore(
+        app.els.voiceSelect,
+        app.els.commentForm.querySelector(".read-back-button")
+      );
+    });
   };
 
   app.addEventListeners = () => {
@@ -44,11 +76,13 @@ function initializeReadBackComments(app) {
         commentMessage = new SpeechSynthesisUtterance(commentText.value);
       }
 
+      commentMessage.voice = app.availableVoices[app.els.voiceSelect.value];
+
       window.speechSynthesis.speak(commentMessage);
     };
   };
 
-  app.addButtonToCommentForm = () => {
+  app.addButtonToDOM = () => {
     app.els.commentForm.insertBefore(
       app.els.readBackButton,
       app.els.commentForm.querySelector(".form-submit")
