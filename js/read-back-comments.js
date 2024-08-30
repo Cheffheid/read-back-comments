@@ -1,33 +1,39 @@
-(function readBackComments(){
-    "use strict";
+(function readBackComments() {
+  "use strict";
 
-    if ( 'speechSynthesis' in window ) {
-        var commentForm = document.forms['commentform'];
+  if (!"speedSynthesis" in window) {
+    return;
+  }
 
-        if ( commentForm ) {
-            var readBackParagraph = document.createElement('p');
-            var readBackButton = document.createElement('button');
-            var submitWrap = commentForm.getElementsByClassName('form-submit');
+  var commentForm = document.forms["commentform"];
 
-            readBackParagraph.className += 'read-back-button';
+  if (!commentForm) {
+    return;
+  }
 
-            readBackButton.innerHTML = "Read back comment";
-            readBackButton.onclick = function(e) {
-                e.preventDefault();
+  var readBackParagraph = document.createElement("p");
+  var readBackButton = document.createElement("button");
+  var submitWrap = commentForm.getElementsByClassName("form-submit");
 
-                var commentText = commentForm.querySelector('textarea#comment');
-                var commentMessage = new SpeechSynthesisUtterance( 'You did not type in a comment.' );
+  readBackParagraph.className += "read-back-button";
 
-                if ( commentText && commentText.value !== '' ) {
-                    var commentMessage = new SpeechSynthesisUtterance( commentText.value );
-                }
+  readBackButton.innerHTML = "Read back comment";
+  readBackButton.onclick = function (e) {
+    e.preventDefault();
 
-                window.speechSynthesis.speak( commentMessage );
-            }
+    var commentText = commentForm.querySelector("textarea#comment");
+    var commentMessage = new SpeechSynthesisUtterance(
+      "You did not type in a comment."
+    );
 
-            readBackParagraph.appendChild( readBackButton );
-
-            commentForm.insertBefore( readBackParagraph, submitWrap[0] );
-        }
+    if (commentText && commentText.value !== "") {
+      var commentMessage = new SpeechSynthesisUtterance(commentText.value);
     }
+
+    window.speechSynthesis.speak(commentMessage);
+  };
+
+  readBackParagraph.appendChild(readBackButton);
+
+  commentForm.insertBefore(readBackParagraph, submitWrap[0]);
 })();
