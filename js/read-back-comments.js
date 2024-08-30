@@ -1,3 +1,4 @@
+/* global readbacki18n */
 (function readBackComments() {
   "use strict";
 
@@ -17,14 +18,12 @@
 
   readBackParagraph.className += "read-back-button";
 
-  readBackButton.innerHTML = "Read back comment";
+  readBackButton.innerHTML = readbacki18n.button_text;
   readBackButton.onclick = function (e) {
     e.preventDefault();
 
     var commentText = commentForm.querySelector("textarea#comment");
-    var commentMessage = new SpeechSynthesisUtterance(
-      "You did not type in a comment."
-    );
+    var commentMessage = new SpeechSynthesisUtterance(readbacki18n.no_comment);
 
     if (commentText && commentText.value !== "") {
       var commentMessage = new SpeechSynthesisUtterance(commentText.value);

@@ -46,7 +46,28 @@ class Read_Back_Comments {
 		$this->plugin_name = 'read-back-comments';
 		$this->plugin_version = '1.0';
 
+		add_action( 'init', array( &$this, 'register_read_back_script' ) );
+		add_action( 'init', array( &$this, 'read_back_script_translations' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_read_back_script' ) );
+	}
+
+	public function register_read_back_script() {
+		wp_register_script(
+			$this->plugin_name,
+			plugin_dir_url( __FILE__ ) . 'js/read-back-comments.js',
+			array(),
+			$this->plugin_version,
+			true
+		);
+	}
+
+	public function read_back_script_translations() {
+		$read_back_translations = [
+			'button_text' => esc_html__( 'Read back comment', 'read-back-comments' ),
+			'no_comment'  => esc_html__( 'You did not type in a comment.', 'read-back-comments' ),
+		];
+
+		wp_localize_script( $this->plugin_name, 'readbacki18n', $read_back_translations );
 	}
 
 	public function enqueue_read_back_script() {
@@ -54,13 +75,7 @@ class Read_Back_Comments {
 			return;
 		}
 
-		wp_enqueue_script(
-			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'js/read-back-comments.js',
-			array(),
-			$this->plugin_version,
-			true
-		);
+		wp_enqueue_script( $this->plugin_name );
 	}
 }
 
